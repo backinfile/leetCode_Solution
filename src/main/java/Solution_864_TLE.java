@@ -33,11 +33,11 @@ public class Solution_864_TLE {
                 }
             }
         }
-        int step = dps(keyNum, new HashSet<>(), packPos(startX, startY));
+        int step = bfs(keyNum, new HashSet<>(), packPos(startX, startY));
         return step == Integer.MAX_VALUE ? -1 : step;
     }
 
-    private int dps(int leftKeyNum, Set<Character> ownKeys, int pos) {
+    private int bfs(int leftKeyNum, Set<Character> ownKeys, int pos) {
         if (leftKeyNum <= 0) {
             return 0;
         }
@@ -50,7 +50,7 @@ public class Solution_864_TLE {
             char key = getChar(targetPos);
 
             ownKeys.add(key);
-            int dpsStep = dps(leftKeyNum - 1, ownKeys, targetPos);
+            int dpsStep = bfs(leftKeyNum - 1, ownKeys, targetPos);
             int finalStep = dpsStep != Integer.MAX_VALUE ? (step + dpsStep) : Integer.MAX_VALUE;
             ownKeys.remove(key);
             if (finalStep < minStep) {

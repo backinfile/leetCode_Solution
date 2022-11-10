@@ -36,7 +36,7 @@ public class Solution_864 {
         }
         this.maskMax = (1 << keyNum) - 1;
 
-        return bps(startX, startY);
+        return bfs(startX, startY);
     }
 
     private static class Tuple {
@@ -53,7 +53,7 @@ public class Solution_864 {
 
     private final static int[] DX = new int[]{0, 0, 1, -1};
     private final static int[] DY = new int[]{1, -1, 0, 0};
-    private int bps(int startX, int startY) {
+    private int bfs(int startX, int startY) {
         boolean[][][] foot = new boolean[xMax][yMax][maskMax + 1];
         foot[startX][startY][0] = true;
         Queue<Tuple> queue = new LinkedList<>();
