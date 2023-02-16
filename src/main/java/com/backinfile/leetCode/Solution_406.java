@@ -1,3 +1,5 @@
+package com.backinfile.leetCode;
+
 import com.alibaba.fastjson2.JSON;
 
 import java.util.*;

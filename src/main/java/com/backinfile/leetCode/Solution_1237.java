@@ -1,7 +1,8 @@
+package com.backinfile.leetCode;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
 
 public class Solution_1237 {
     private static final int MIN_VALUE = 1;

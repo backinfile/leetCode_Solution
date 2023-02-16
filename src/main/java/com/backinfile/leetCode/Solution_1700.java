@@ -1,3 +1,5 @@
+package com.backinfile.leetCode;
+
 import java.util.Arrays;
 
 public class Solution_1700 {

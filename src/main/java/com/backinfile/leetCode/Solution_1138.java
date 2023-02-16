@@ -1,3 +1,5 @@
+package com.backinfile.leetCode;
+
 public class Solution_1138 {
     public String alphabetBoardPath(String target) {
         int x = 0;
