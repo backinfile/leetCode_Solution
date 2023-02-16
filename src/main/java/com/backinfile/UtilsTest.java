@@ -2,6 +2,7 @@ package com.backinfile;
 
 import com.backinfile.lintCode.Solution_518;
 import com.backinfile.lintCode.TreeNode;
+import com.backinfile.lintCode.UndirectedGraphNode;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -57,5 +58,18 @@ public class UtilsTest {
         assert heap.poll() == 6;
         assert heap.poll() == 77;
         assert heap.isEmpty();
+    }
+
+    @Test
+    public void graphNode() {
+        List<UndirectedGraphNode> graphNodes = UndirectedGraphNode.parse("{1,2,4#2,1,4#3,5#4,1,2#5,3}");
+        assert graphNodes.size() == 5;
+        assert graphNodes.get(0).label == 1;
+        assert graphNodes.get(4).label == 5;
+        assert graphNodes.get(0).neighbors.size() == 2;
+        assert graphNodes.get(0).neighbors.get(0).label == 2;
+        assert graphNodes.get(0).neighbors.get(1).label == 4;
+        assert graphNodes.get(2).neighbors.size() == 1;
+        assert graphNodes.get(2).neighbors.get(0).label == 5;
     }
 }
