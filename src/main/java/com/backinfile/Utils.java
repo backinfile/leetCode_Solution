@@ -8,4 +8,8 @@ public class Utils {
     public static int[][] toIntIntArray(String str) {
         return JSON.parseObject(str, int[][].class);
     }
+
+    public static int[] toIntArray(String str) {
+        return JSON.parseObject(str, int[].class);
+    }
 }
