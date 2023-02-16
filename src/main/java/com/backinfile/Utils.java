@@ -1,4 +1,4 @@
-package com.backinfile.leetCode;
+package com.backinfile;
 
 import com.alibaba.fastjson.JSON;
 

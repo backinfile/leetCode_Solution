@@ -1,6 +1,6 @@
 package com.backinfile.lintCode;
 
-import com.backinfile.leetCode.Utils;
+import com.backinfile.Utils;
 import org.junit.Test;
 
 public class Solution_1306 {
