@@ -26,38 +26,35 @@ public class Solution_790 {
 
     // 返回匹配了多少的字符，返回-1表示失败
     private int match(Map<Character, List<String>> generatorMap, char startSymbol, String symbolString, int symbolIndex) {
-        for (int index = 0; index < symbolString.length(); index++) {
-            char ch = symbolString.charAt(index);
-            List<String> paths = generatorMap.get(startSymbol);
-            if (paths == null || paths.isEmpty()) {
-                return -1;
-            }
+        List<String> paths = generatorMap.get(startSymbol);
+        if (paths == null || paths.isEmpty()) {
+            return -1;
+        }
 
-            PATH:
-            for (String path : paths) {
-                int matchOffset = 0;
-                for (int pathIndex = 0; pathIndex < path.length(); pathIndex++) {
-                    char match = path.charAt(pathIndex);
-                    int curIndex = symbolIndex + matchOffset;
-                    if (curIndex >= symbolString.length()) {
+        PATH:
+        for (String path : paths) {
+            int matchOffset = 0;
+            for (int pathIndex = 0; pathIndex < path.length(); pathIndex++) {
+                char match = path.charAt(pathIndex);
+                int curIndex = symbolIndex + matchOffset;
+                if (curIndex >= symbolString.length()) {
+                    continue PATH;
+                }
+                if (Character.isUpperCase(match)) {
+                    int result = match(generatorMap, match, symbolString, curIndex);
+                    if (result < 0) {
                         continue PATH;
                     }
-                    if (Character.isUpperCase(match)) {
-                        int result = match(generatorMap, match, symbolString, curIndex);
-                        if (result < 0) {
-                            continue PATH;
-                        }
-                        matchOffset += result;
+                    matchOffset += result;
+                } else {
+                    if (match == symbolString.charAt(curIndex)) {
+                        matchOffset++;
                     } else {
-                        if (match == symbolString.charAt(curIndex)) {
-                            matchOffset++;
-                        } else {
-                            continue PATH;
-                        }
+                        continue PATH;
                     }
                 }
-                return matchOffset;
             }
+            return matchOffset;
         }
         return -1;
     }
