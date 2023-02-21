@@ -50,7 +50,7 @@ public class Solution_518 {
             length++;
             orderUp(length - 1);
 
-            if (length == arr.length - 1) {
+            if (length == arr.length) {
                 length--;
             }
         }
