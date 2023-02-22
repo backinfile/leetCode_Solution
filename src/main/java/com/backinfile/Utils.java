@@ -45,6 +45,10 @@ public class Utils {
         }
     }
 
+    public static boolean equal(double a, double b) {
+        return Math.abs(a - b) < 1e-5;
+    }
+
     public static void main(String[] args) {
         String test = readResource("input_778_01.txt");
         System.out.println(test);
