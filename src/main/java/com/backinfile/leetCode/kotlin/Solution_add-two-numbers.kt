@@ -81,19 +81,6 @@ class `Solution_add-two-numbers` {
         }
     }
 
-    private fun toListNode(str: String): ListNode {
-        val array = Utils.toIntArray(str)
-        val nodes = array.map { ListNode(it) }
-        nodes.forEachIndexed { index, node ->
-            if (index + 1 < nodes.size) {
-                node.next = nodes[index + 1]
-            }
-        }
-        return nodes[0]
-    }
 
-    class ListNode(var `val`: Int) {
-        var next: ListNode? = null;
-    }
 
 }
