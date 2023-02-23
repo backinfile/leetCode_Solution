@@ -5,6 +5,8 @@ import sun.applet.Main
 import kotlin.system.measureNanoTime
 
 class `Solution_regular-expression-matching` {
+
+    // 广度优先搜索
     fun isMatch(s: String, p: String): Boolean {
         val length = s.length
         val patternLength = p.length
@@ -60,7 +62,7 @@ class `Solution_regular-expression-matching` {
 
     @Test
     fun test() {
-//        assert(!isMatch("aa", "a"))
+        assert(!isMatch("aa", "a"))
         assert(isMatch("aa", "a*"))
         assert(isMatch("ab", ".*"))
         assert(isMatch("", ""))
