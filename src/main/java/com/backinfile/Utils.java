@@ -1,6 +1,7 @@
 package com.backinfile;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 import java.io.*;
 import java.net.URL;
@@ -49,8 +50,15 @@ public class Utils {
         return Math.abs(a - b) < 1e-5;
     }
 
+
+    public static String[] toStrArray(String str) {
+        return JSONObject.parseObject(str, String[].class);
+    }
+
     public static void main(String[] args) {
-        String test = readResource("input_778_01.txt");
-        System.out.println(test);
+//        String test = readResource("input_778_01.txt");
+//        System.out.println(test);
+
+        System.out.println(Arrays.toString(toStrArray("[\"flower\",\"flow\",\"flight\"]")));
     }
 }
