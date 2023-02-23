@@ -12,26 +12,27 @@ class `Solution_roman-to-integer` {
         var index = 0
         while (index < s.length) {
             val nextChar = if (index + 1 < s.length) s[index + 1] else null
-            when (s[index]) {
-                'M' -> result += 1000
-                'D' -> result += 500
-                'C' -> result += when(nextChar) {
+            result += when (s[index]) {
+                'M' ->  1000
+                'D' ->  500
+                'C' ->  when (nextChar) {
                     'D' -> {index++; 400}
                     'M' -> {index++; 900}
                     else -> 100
                 }
-                'L' -> result += 50
-                'X' -> result += when(nextChar) {
+                'L' ->  50
+                'X' ->  when (nextChar) {
                     'L' -> {index++; 40}
                     'C' -> {index++; 90}
                     else -> 10
                 }
-                'V' -> result += 5
-                'I' -> result += when(nextChar) {
+                'V' ->  5
+                'I' ->  when (nextChar) {
                     'V' -> {index++; 4}
                     'X' -> {index++; 9}
                     else -> 1
                 }
+                else -> 0
             }
             index++
         }
