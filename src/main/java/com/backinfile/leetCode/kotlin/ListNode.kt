@@ -41,6 +41,19 @@ fun toListNode(str: String): ListNode? {
     return nodes[0]
 }
 
+fun toListNode(array: IntArray): ListNode? {
+    if (array.isEmpty()) {
+        return null
+    }
+    val nodes = array.map { ListNode(it) }
+    nodes.forEachIndexed { index, node ->
+        if (index + 1 < nodes.size) {
+            node.next = nodes[index + 1]
+        }
+    }
+    return nodes[0]
+}
+
 fun listNodeEquals(l1: ListNode?, l2: ListNode?): Boolean {
     var n1: ListNode? = l1;
     var n2: ListNode? = l2;
