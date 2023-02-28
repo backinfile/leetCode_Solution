@@ -27,13 +27,13 @@ class `Solution_find-first-and-last-position-of-element-in-sorted-array_2` {
         while (left <= right) {
             val mid = (left + right) / 2   // (right - left) / 2 + left
             val midValue = nums[mid]
-            if (midValue >= target) {
+            if (midValue >= target) { // 符合匹配条件时，应移动次要的指针right
                 right = mid - 1 // 让right跨过left终止循环
             } else {
                 left = mid + 1
             }
         }
-        return left // 返回left表示要找小于等于target的值 mid取值应偏向与left
+        return left // 返回left表示要找小于等于target的值 mid取值应偏向于left
     }
 
 
