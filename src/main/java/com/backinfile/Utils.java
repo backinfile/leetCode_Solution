@@ -4,11 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 import java.io.*;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +13,7 @@ import java.util.stream.Collectors;
 public class Utils {
 
     // [[0,10000,2],[5,0,10000],[10000,4,0]]
-    public static int[][] toIntIntArray(String str) {
+    public static int[][] toIntArrayArray(String str) {
         return JSON.parseObject(str, int[][].class);
     }
 
@@ -53,6 +49,10 @@ public class Utils {
 
     public static String[] toStrArray(String str) {
         return JSONObject.parseObject(str, String[].class);
+    }
+
+    public static String[][] toStrArrayArray(String str) {
+        return JSONObject.parseObject(str, String[][].class);
     }
 
     public static <T extends Comparable<T>> int compareList(List<T> l1, List<T> l2) {

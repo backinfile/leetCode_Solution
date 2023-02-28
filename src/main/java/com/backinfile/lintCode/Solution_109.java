@@ -50,13 +50,13 @@ public class Solution_109 {
 
     @Test
     public void test() {
-        assert 11 == minimumTotal(Utils.toIntIntArray("[\n" +
+        assert 11 == minimumTotal(Utils.toIntArrayArray("[\n" +
                 "     [2],\n" +
                 "    [3,4],\n" +
                 "   [6,5,7],\n" +
                 "  [4,1,8,3]\n" +
                 "]"));
-        assert 12 == minimumTotal(Utils.toIntIntArray("[\n" +
+        assert 12 == minimumTotal(Utils.toIntArrayArray("[\n" +
                 "     [2],\n" +
                 "    [3,2],\n" +
                 "   [6,5,7],\n" +

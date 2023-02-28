@@ -41,7 +41,7 @@ class `Solution_merge-k-sorted-lists_2` {
     }
 
     private fun testFunc(inputStr: String, answerStr: String): Boolean {
-        val input = Utils.toIntIntArray(inputStr).map(::toListNode).toTypedArray()
+        val input = Utils.toIntArrayArray(inputStr).map(::toListNode).toTypedArray()
         val answer = toListNode(answerStr)
         val output = mergeKLists(input)
         return listNodeEquals(output, answer)

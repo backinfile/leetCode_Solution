@@ -2,8 +2,6 @@ package com.backinfile.leetCode.kotlin
 
 import com.backinfile.Utils
 import org.junit.Test
-import java.security.DrbgParameters.Capability
-import kotlin.math.min
 
 class `Solution_merge-k-sorted-lists_3` {
     fun mergeKLists(lists: Array<ListNode?>): ListNode? {
@@ -101,7 +99,7 @@ class `Solution_merge-k-sorted-lists_3` {
     }
 
     private fun testFunc(inputStr: String, answerStr: String): Boolean {
-        val input = Utils.toIntIntArray(inputStr).map(::toListNode).toTypedArray()
+        val input = Utils.toIntArrayArray(inputStr).map(::toListNode).toTypedArray()
         val answer = toListNode(answerStr)
         val output = mergeKLists(input)
         return listNodeEquals(output, answer)

@@ -96,7 +96,7 @@ public class Solution_778 {
     }
 
     private boolean testEquals(String inputStr, String answerStr) {
-        List<List<Integer>> result = pacificAtlantic(Utils.toIntIntArray(inputStr));
+        List<List<Integer>> result = pacificAtlantic(Utils.toIntArrayArray(inputStr));
         List<List<Integer>> answerList = Utils.toIntIntList(answerStr);
 
         sortResult(result);

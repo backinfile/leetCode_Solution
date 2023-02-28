@@ -2,7 +2,6 @@ package com.backinfile.leetCode.kotlin
 
 import com.backinfile.Utils
 import org.junit.Test
-import java.util.*
 import kotlin.collections.ArrayList
 
 class Solution_3sum {
@@ -37,9 +36,9 @@ class Solution_3sum {
 
     @Test
     fun test() {
-        assert(equals(threeSum(Utils.toIntArray("[-1,0,1,2,-1,-4]")), Utils.toIntIntArray("[[-1,-1,2],[-1,0,1]]")))
-        assert(equals(threeSum(Utils.toIntArray("[0,1,1]")), Utils.toIntIntArray("[]")))
-        assert(equals(threeSum(Utils.toIntArray("[0,0,0]")), Utils.toIntIntArray("[[0,0,0]]")))
+        assert(equals(threeSum(Utils.toIntArray("[-1,0,1,2,-1,-4]")), Utils.toIntArrayArray("[[-1,-1,2],[-1,0,1]]")))
+        assert(equals(threeSum(Utils.toIntArray("[0,1,1]")), Utils.toIntArrayArray("[]")))
+        assert(equals(threeSum(Utils.toIntArray("[0,0,0]")), Utils.toIntArrayArray("[[0,0,0]]")))
     }
 
     private fun equals(output: List<List<Int>>, answer: Array<IntArray>): Boolean {

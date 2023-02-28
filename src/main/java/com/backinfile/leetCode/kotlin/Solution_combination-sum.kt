@@ -42,7 +42,7 @@ class `Solution_combination-sum` {
 
     private fun testFunc(inputStr: String, target: Int, answerString: String): Boolean {
         val output = combinationSum(Utils.toIntArray(inputStr), target).map { it.sorted() }.toSet()
-        val answer = Utils.toIntIntArray(answerString).map { it.sorted() }.toSet()
+        val answer = Utils.toIntArrayArray(answerString).map { it.sorted() }.toSet()
         println(output)
         return output == answer
     }

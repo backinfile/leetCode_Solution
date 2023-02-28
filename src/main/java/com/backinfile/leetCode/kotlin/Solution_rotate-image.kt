@@ -42,9 +42,9 @@ class `Solution_rotate-image` {
     }
 
     private fun testFunc(inputStr: String, answerStr: String): Boolean {
-        val output = Utils.toIntIntArray(inputStr)
+        val output = Utils.toIntArrayArray(inputStr)
         rotate(output)
-        val answer = Utils.toIntIntArray(answerStr).map { it.toList() }.toList()
+        val answer = Utils.toIntArrayArray(answerStr).map { it.toList() }.toList()
         println(output.map { it.toList() }.toList())
 
         return output.map { it.toList() }.toList() == answer
