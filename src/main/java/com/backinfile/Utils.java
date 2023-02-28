@@ -55,6 +55,16 @@ public class Utils {
         return JSONObject.parseObject(str, String[].class);
     }
 
+    public static <T extends Comparable<T>> int compareList(List<T> l1, List<T> l2) {
+        for (int i = 0; i < l1.size() && i < l2.size(); i++) {
+            var c = l1.get(i).compareTo(l2.get(i));
+            if (c != 0) {
+                return c;
+            }
+        }
+        return l1.size() - l2.size();
+    }
+
     public static void main(String[] args) {
 //        String test = readResource("input_778_01.txt");
 //        System.out.println(test);

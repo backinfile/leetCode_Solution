@@ -5,6 +5,10 @@ import org.junit.Test
 import java.util.Stack
 
 class `Solution_trapping-rain-water` {
+
+    // 如果最右侧为一个无限高的墙，则可通过一次遍历得到答案
+    // 所有这个问题可以拆分成两个子问题
+    // 先找到最高点，视为无限高的墙
     fun trap(height: IntArray): Int {
         if (height.size <= 2) {
             return 0
