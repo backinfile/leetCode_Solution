@@ -11,80 +11,76 @@ class `Solution_minimum-window-substring` {
         if (t.isEmpty() || s.isEmpty()) {
             return ""
         }
+        val charMap = t.groupBy { it }.map { it.key to it.value.size }.toMap() // 需求的charMap
+        var totalCnt = charMap.values.sum() // 当前需求的char的数目
 
-        val charMap = t.groupBy { it }.map { it.key to it.value.size }.toMap()
-        val hashMap = hashMapOf<Char, LinkedList<Int>>()
+        val hashMap = hashMapOf<Char, Int>() // 存储当前last~i之间提供的char
 
-        var minLength = -1
-        var minLeft = -1
-        var minRight = -1
-        var last = 0
+        var (minLength, minLeft, minRight) = arrayOf(-1, -1, -1) // 最终结果
 
+        var last = 0 // 第一个指针
 
-        fun checkAndDo(index: Int): Boolean {
-            if (charMap.any { it.value > hashMap.computeIfAbsent(it.key) { LinkedList() }.count { i -> i >= last } }) {
-                return false
-            }
-            if (minLength == -1 || index - last + 1 < minLength) {
-                minLength = index - last + 1
-                minLeft = last
-                minRight = index
-            }
-            return true
-        }
-
-        fun moveLast() {
+        // 移动last指针
+        fun moveLast(_force: Boolean) {
+            var force = _force
             while (last < s.length) {
                 val ch = s[last]
                 val count = charMap.getOrDefault(ch, 0)
                 if (count == 0) {
                     last++
+                    assert(!force)
                     continue
                 }
-                val passed = hashMap.computeIfAbsent(ch) { LinkedList() }
-                passed.removeAll { it < last }
-                if (passed.size <= count) {
+                val passed = hashMap.getOrDefault(ch, 0)
+                if (passed > count || force) {
+                    assert(passed > 0)
+                    hashMap[ch] = passed - 1
+                    last++
+                    if (passed == count) {
+                        totalCnt++
+                    }
+                    force = false
+                } else {
                     break
                 }
-                passed.pollFirst()
-                last++
             }
         }
 
-
+        // 先过滤掉开头不需求的char
         while (last < s.length && !charMap.containsKey(s[last])) last++
         if (last >= s.length) {
             return ""
         }
 
-//        hashMap[s[last]] = LinkedList()
-//        hashMap[s[last]]!!.add(last)
         for (i in last until s.length) {
             val ch = s[i]
             val count = charMap.getOrDefault(ch, 0)
             if (count == 0) {
                 continue
             }
-            val passed = hashMap.computeIfAbsent(ch) { LinkedList() }
-            passed.removeAll { it < last }
-            passed.add(i)
+            var passed = hashMap.getOrDefault(ch, 0)
+            if (passed < count) totalCnt--
+            passed += 1
+            hashMap[ch] = passed
 
-            if (passed.size > count && s[i] == ch) {
-                moveLast()
+            if (passed > count && s[i] == ch) {
+                moveLast(false)
             }
-            if (passed.size >= count) {
-                if (checkAndDo(i)) {
-                    last++
+            if (passed >= count) {
+                if (totalCnt == 0) {
+                    if (minLength == -1 || i - last + 1 < minLength) {
+                        minLength = i - last + 1
+                        minLeft = last
+                        minRight = i
+                    }
+                    moveLast(true)
                 }
             }
-            moveLast()
+            moveLast(false)
         }
-        if (minLength != -1) {
-//            println(s.substring(minLeft..minRight))
-            return s.substring(minLeft..minRight)
+        return (if (minLength != -1) s.substring(minLeft..minRight) else "").also {
+            println(it)
         }
-//        println("")
-        return ""
     }
 
     @Test
