@@ -26,7 +26,7 @@ class kmp {
             if (str[i] == pattern[p]) {
                 p++
                 i++
-            } else if (p != next[p]) {
+            } else if (p > 0) {
                 println("rollback p from $p to ${next[p]}")
                 p = next[p]
             } else {
