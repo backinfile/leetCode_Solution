@@ -7,10 +7,9 @@ class `Solution_largest-rectangle-in-histogram` {
     fun largestRectangleArea(heights: IntArray): Int {
         var result = 0
         val stack = ArrayDeque<Pair<Int, Int>>() // index->bottomIndex
-        val stack2 = ArrayDeque<Pair<Int, Int>>()
 
         for (i in heights.indices) {
-            println("curHeight=$result i=${i - 1}")
+//            println("curHeight=$result i=${i - 1}")
             val curHeight = heights[i]
             if (stack.isEmpty()) {
                 result = result.coerceAtLeast(curHeight)
@@ -18,41 +17,37 @@ class `Solution_largest-rectangle-in-histogram` {
                 continue
             }
 
-            val lastHeight = heights[stack.last().first]
-            if (curHeight <= lastHeight) {
-                val bottomIndex = stack.removeLast().second
-                stack.addLast(i to bottomIndex)
-
+            var bottomIndex: Int = -1
+            while (curHeight <= heights[stack.last().first]) {
+                bottomIndex = stack.removeLast().second
+                if (stack.isEmpty()) break
+            }
+            if (bottomIndex != -1) {
                 result = result.coerceAtLeast(curHeight * (i - bottomIndex + 1))
-            } else {
-                result = result.coerceAtLeast(heights[i])
+                stack.addLast(i to bottomIndex)
+            }
 
-                val minIndex = stack.last().first
-                var curLastBottomIndex = i
-                do {
-                    val last = stack.removeLast()
-                    val (index, bottomIndex) = last
-                    if (index < minIndex) {
-                        continue
-                    }
-                    if (curHeight == heights[index]) {
-                        curLastBottomIndex = curLastBottomIndex.coerceAtMost(bottomIndex)
-                    } else {
-                        stack2.addLast(last)
-                    }
-                    result = result.coerceAtLeast(heights[index] * (i - bottomIndex + 1))
-                } while (!stack.isEmpty() && curHeight >= heights[stack.last().first])
-                stack.add(i to curLastBottomIndex)
-                while (!stack2.isEmpty()) stack.addLast(stack2.removeLast())
+            for (last in stack) {
+                result = result.coerceAtLeast(heights[last.first] * (i - last.second + 1))
+            }
+
+            if (bottomIndex == -1) {
+                result = result.coerceAtLeast(curHeight)
+                stack.addLast(i to i)
             }
         }
 
-        println(result)
+
+//        println(result)
         return result
     }
 
     @Test
     fun test() {
+        assert(14 == largestRectangleArea("[4,5,3,2,7,5,3]".toIntArray()))
+        assert(14 == largestRectangleArea("[6,4,2,0,3,2,0,3,1,4,5,3,2,7,5,3,0,1,2,1,3,4,6,8,1,3]".toIntArray()))
+        assert(20 == largestRectangleArea("[3,6,5,7,4,8,1,0]".toIntArray()))
+        assert(30 == largestRectangleArea("[10,10,10]".toIntArray()))
         assert(6 == largestRectangleArea("[4,2,0,3,2,5]".toIntArray()))
 
         assert(9 == largestRectangleArea("[1,2,3,4,5]".toIntArray()))
@@ -68,6 +63,5 @@ class `Solution_largest-rectangle-in-histogram` {
         assert(2 == largestRectangleArea("[2]".toIntArray()))
 
         assert(2 == largestRectangleArea("[2]".toIntArray()))
-        assert(30 == largestRectangleArea("[10,10,10]".toIntArray()))
     }
 }

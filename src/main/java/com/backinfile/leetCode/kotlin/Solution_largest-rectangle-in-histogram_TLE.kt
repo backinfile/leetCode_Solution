@@ -2,9 +2,8 @@ package com.backinfile.leetCode.kotlin
 
 import com.backinfile.toIntArray
 import org.junit.Test
-import java.util.stream.IntStream
 
-class `Solution_largest-rectangle-in-histogram_2` {
+class `Solution_largest-rectangle-in-histogram_TLE` {
     fun largestRectangleArea(heights: IntArray): Int {
         if (heights.isEmpty()) {
             return 0
