@@ -16,6 +16,9 @@ public class Utils {
     public static int[][] toIntArrayArray(String str) {
         return JSON.parseObject(str, int[][].class);
     }
+    public static char[][] toCharArrayArray(String str) {
+        return JSON.parseObject(str, char[][].class);
+    }
 
     public static int[] toIntArray(String str) {
         return JSON.parseObject(str, int[].class);

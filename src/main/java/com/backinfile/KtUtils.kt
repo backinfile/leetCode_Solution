@@ -1,5 +1,7 @@
 package com.backinfile
 
+import com.alibaba.fastjson.JSON
+
 class KtUtils {
 }
 
@@ -14,6 +16,10 @@ fun String.toIntArray(): IntArray {
 
 fun String.toIntArrayArray(): Array<IntArray> {
     return Utils.toIntArrayArray(this)
+}
+
+fun String.toCharArrayArray():Array<CharArray> {
+    return Utils.toCharArrayArray(this)
 }
 
 fun String.toIntListList(): MutableList<MutableList<Int>> {
