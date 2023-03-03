@@ -21,17 +21,12 @@ class `Solution_construct-binary-tree-from-preorder-and-inorder-traversal` {
                 return head
             }
 
-            val headIndex = inorder.indexOf(curValue) // 左子树的最右侧index
-            val leftSize = headIndex - iStart
-            if (leftSize > 0) {
-                head.left = build(start + 1, start + 1 + leftSize - 1, iStart, headIndex - 1)
-                head.right = build(start + 1 + leftSize - 1 + 1, end, headIndex + 1, iEnd)
-            } else {
-                head.right = build(start + 1, end, headIndex + 1, iEnd)
-            }
+            val headIndex = inorder.indexOf(curValue) // 左子树的最右侧index+1
+            val leftSize = headIndex - iStart // 左侧子树的所有节点数目
+            head.left = build(start + 1, start + 1 + leftSize - 1, iStart, headIndex - 1)
+            head.right = build(start + 1 + leftSize - 1 + 1, end, headIndex + 1, iEnd)
             return head
         }
-
         return build(0, preorder.lastIndex, 0, inorder.lastIndex)
     }
 
