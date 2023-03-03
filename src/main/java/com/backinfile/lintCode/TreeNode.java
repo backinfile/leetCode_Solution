@@ -3,6 +3,8 @@ package com.backinfile.lintCode;
 import com.alibaba.fastjson2.JSON;
 import org.junit.Test;
 
+import java.util.Objects;
+
 public class TreeNode {
     public int val;
     public TreeNode left, right;
@@ -43,4 +45,16 @@ public class TreeNode {
         return treeNodes[0];
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TreeNode treeNode = (TreeNode) o;
+        return val == treeNode.val && Objects.equals(left, treeNode.left) && Objects.equals(right, treeNode.right);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(val, left, right);
+    }
 }
