@@ -21,6 +21,9 @@ public class TreeNode {
 
     public static TreeNode parse(String str) {
         Integer[] array = JSON.parseObject(str, Integer[].class);
+        if (array.length == 0) {
+            return null;
+        }
         TreeNode[] treeNodes = new TreeNode[array.length];
         for (int i = 0; i < array.length; i++) {
             if (array[i] == null) {
