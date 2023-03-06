@@ -14,6 +14,9 @@ fun <T : Comparable<T>> List<List<T>>.sorted(): List<List<T>> {
 fun String.toIntArray(): IntArray {
     return Utils.toIntArray(this)
 }
+fun String.toStrList(): MutableList<String> {
+    return Utils.toStrArray(this).toMutableList()
+}
 
 fun String.toIntList(): MutableList<Int> {
     return Utils.toIntArray(this).toMutableList()
