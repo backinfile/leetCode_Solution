@@ -4,28 +4,21 @@ import com.backinfile.Utils
 
 class ListNode(var `val`: Int) {
     var next: ListNode? = null;
-
-    override fun equals(other: Any?): Boolean {
-        var n1: ListNode? = this;
-        var n2: ListNode? = other as ListNode?;
-        while (true) {
-            if (n1 != null && n2 != null) {
-                if (n1.`val` != n2.`val`) {
-                    return false
-                }
-                n1 = n1.next
-                n2 = n2.next
-            } else return n1 == null && n2 == null
-        }
-    }
-
-    override fun hashCode(): Int {
-        var result = `val`
-        result = 31 * result + (next?.hashCode() ?: 0)
-        return result
-    }
 }
 
+infix fun ListNode?.equalTo(other: ListNode?): Boolean {
+    var n1: ListNode? = this;
+    var n2: ListNode? = other
+    while (true) {
+        if (n1 != null && n2 != null) {
+            if (n1.`val` != n2.`val`) {
+                return false
+            }
+            n1 = n1.next
+            n2 = n2.next
+        } else return n1 == null && n2 == null
+    }
+}
 
 fun toListNode(str: String): ListNode? {
     val array = Utils.toIntArray(str)

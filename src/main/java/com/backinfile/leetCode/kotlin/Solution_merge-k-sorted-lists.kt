@@ -74,6 +74,6 @@ class `Solution_merge-k-sorted-lists` {
         val input = Utils.toIntArrayArray(inputStr).map(::toListNode).toTypedArray()
         val answer = toListNode(answerStr)
         val output = mergeKLists(input)
-        return listNodeEquals(output, answer)
+        return output equalTo answer
     }
 }
