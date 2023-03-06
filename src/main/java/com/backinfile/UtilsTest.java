@@ -24,6 +24,7 @@ public class UtilsTest {
         assert treeNode.right.left == null;
         assert treeNode.right.right.val == 18;
         assert treeNode.right.right.left == null;
+        assert treeNode.toList().equals(Utils.toIntList("[10,5,15,3,7,null,18]"));
     }
 
     @Test
