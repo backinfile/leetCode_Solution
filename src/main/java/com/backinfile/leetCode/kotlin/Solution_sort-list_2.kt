@@ -6,20 +6,16 @@ import com.backinfile.toListNode
 import org.junit.Test
 
 class `Solution_sort-list_2` {
+
     fun sortList(head: ListNode?): ListNode? {
         if (head?.next == null) {
             return head
         }
-        if (head.next!!.next == null) {
-            if (head.`val` < head.next!!.`val`) {
-                return head
-            }
-            head.next!!.next = head
-            return head.next.also { head.next = null }
-        }
 
-        var slow = head
-        var fast = head
+        val dummy = ListNode(-1)
+        dummy.next = head
+        var slow:ListNode? = dummy
+        var fast:ListNode? = dummy
         while (fast?.next != null) {
             slow = slow!!.next
             fast = fast.next?.next
@@ -28,9 +24,7 @@ class `Solution_sort-list_2` {
         var right = sortList(slow?.next?.also { slow.next = null })
         var left = sortList(head)
 
-        val result = MutableDummy
-        var tail = result
-
+        var tail = dummy
         while (right != null && left != null) {
             if (right.`val` < left.`val`) {
                 tail.next = right
@@ -43,11 +37,7 @@ class `Solution_sort-list_2` {
             }
         }
         tail.next = right ?: left
-        return result.next
-    }
-
-    companion object {
-        private val MutableDummy = ListNode(-1)
+        return dummy.next
     }
 
 
