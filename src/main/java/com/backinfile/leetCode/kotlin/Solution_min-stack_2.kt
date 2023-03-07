@@ -78,5 +78,17 @@ class `Solution_min-stack_2` {
         minStack.push(Int.MIN_VALUE);
         minStack.push(Int.MAX_VALUE);
         assert(minStack.top() == Int.MAX_VALUE)
+        assert(minStack.getMin() == Int.MIN_VALUE)
     }
+
+    @Test
+    fun test3() {
+        val minStack = MinStack()
+        minStack.push(Int.MAX_VALUE);
+        minStack.push(Int.MIN_VALUE);
+        assert(minStack.top() == Int.MIN_VALUE)
+        assert(minStack.getMin() == Int.MIN_VALUE)
+    }
+
+    // ["MinStack","push","push","push","top","pop","getMin","pop","getMin","pop","push","top","getMin","push","top","getMin","pop","getMin"] [[],[2147483646],[2147483646],[2147483647],[],[],[],[],[],[],[2147483647],[],[],[-2147483648],[],[],[],[]]
 }

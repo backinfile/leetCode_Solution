@@ -1,33 +1,36 @@
 package com.backinfile.leetCode.kotlin
 
 import org.junit.Test
+import kotlin.math.min
 
-class `Solution_min-stack` {
+class `Solution_min-stack_3` {
 
     class MinStack {
-        var size = 0
-        private var list = ArrayList<Pair<Int, Int>>()
+        private var stack = java.util.Stack<Int>()
+        private var minValue: Int = Int.MAX_VALUE // 当前最小值
 
         fun push(`val`: Int) {
-            val min = if (size > 0) Math.min(list[size - 1].second, `val`) else `val`
-            if (list.size > size) {
-                list[size] = `val` to min
-            } else {
-                list.add(`val` to min)
+            if (`val` <= minValue) {
+                stack.add(minValue)
+                minValue = `val`
             }
-            size++
+            stack.add(`val`)
+
         }
 
         fun pop() {
-            size--
+            val value = stack.pop()
+            if (value == minValue) {
+                minValue = stack.pop()
+            }
         }
 
         fun top(): Int {
-            return list[size - 1].first
+            return stack.peek()
         }
 
         fun getMin(): Int {
-            return list[size - 1].second
+            return minValue
         }
     }
 
@@ -51,6 +54,18 @@ class `Solution_min-stack` {
         assert(0 == minStack.top())
         assert(-2 == minStack.getMin())
     }
+
+    @Test
+    fun test0() {
+        val minStack = MinStack()
+        minStack.push(0);
+        minStack.push(1);
+        minStack.push(0);
+        assert(0 == minStack.getMin())
+        minStack.pop()
+        assert(0 == minStack.getMin())
+    }
+
     @Test
     fun test2() {
         val minStack = MinStack()
@@ -68,4 +83,6 @@ class `Solution_min-stack` {
         assert(minStack.top() == Int.MIN_VALUE)
         assert(minStack.getMin() == Int.MIN_VALUE)
     }
+
+    // ["MinStack","push","push","push","top","pop","getMin","pop","getMin","pop","push","top","getMin","push","top","getMin","pop","getMin"] [[],[2147483646],[2147483646],[2147483647],[],[],[],[],[],[],[2147483647],[],[],[-2147483648],[],[],[],[]]
 }
