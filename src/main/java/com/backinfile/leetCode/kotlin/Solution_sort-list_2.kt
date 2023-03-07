@@ -7,15 +7,14 @@ import org.junit.Test
 
 class `Solution_sort-list_2` {
 
+    // 自顶到下分治法
     fun sortList(head: ListNode?): ListNode? {
         if (head?.next == null) {
             return head
         }
 
-        val dummy = ListNode(-1)
-        dummy.next = head
-        var slow:ListNode? = dummy
-        var fast:ListNode? = dummy
+        var slow:ListNode? = head
+        var fast:ListNode? = head.next
         while (fast?.next != null) {
             slow = slow!!.next
             fast = fast.next?.next
@@ -24,6 +23,7 @@ class `Solution_sort-list_2` {
         var right = sortList(slow?.next?.also { slow.next = null })
         var left = sortList(head)
 
+        val dummy = ListNode(-1)
         var tail = dummy
         while (right != null && left != null) {
             if (right.`val` < left.`val`) {
