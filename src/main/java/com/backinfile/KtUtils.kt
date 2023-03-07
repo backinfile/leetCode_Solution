@@ -43,6 +43,9 @@ fun String.toTree(): TreeNode? {
 fun String.toListNode(): ListNode? {
     return com.backinfile.leetCode.kotlin.toListNode(this);
 }
+fun Collection<Int>.toListNode(): ListNode? {
+    return com.backinfile.leetCode.kotlin.toListNode(this.toIntArray());
+}
 
 fun ListNode?.last(): ListNode? {
     var cur = this
