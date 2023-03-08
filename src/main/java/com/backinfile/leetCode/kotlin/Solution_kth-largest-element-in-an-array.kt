@@ -7,13 +7,12 @@ class `Solution_kth-largest-element-in-an-array` {
     fun findKthLargest(nums: IntArray, k: Int): Int {
         val heap = Heap(k)
         nums.forEach { heap.add(it) }
-        if (heap.size > k) {
-            heap.pop()
-        }
         return heap.pop()
     }
 
-    class Heap(capacity: Int) {
+
+    // 最小堆
+    class Heap(private val capacity: Int) {
         val array = IntArray(capacity + 1)
         var size = 0
             private set
@@ -33,6 +32,10 @@ class `Solution_kth-largest-element-in-an-array` {
         fun pop(): Int {
             if (size == 1) {
                 return array[--size]
+            }
+            if (size > capacity) {
+                array[0] = array[--size]
+                orderDown()
             }
             return array[0].also {
                 array[0] = array[--size]
