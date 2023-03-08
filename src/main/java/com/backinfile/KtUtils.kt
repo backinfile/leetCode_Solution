@@ -40,9 +40,20 @@ fun String.toTree(): TreeNode? {
     return TreeNode.parse(this)
 }
 
+fun TreeNode?.findNode(value: Int): TreeNode? {
+    if (this == null) {
+        return null
+    }
+    if (this.`val` == value) return this
+    this.left.findNode(value)?.let { return it }
+    this.right.findNode(value)?.let { return it }
+    return null
+}
+
 fun String.toListNode(): ListNode? {
     return com.backinfile.leetCode.kotlin.toListNode(this);
 }
+
 fun Collection<Int>.toListNode(): ListNode? {
     return com.backinfile.leetCode.kotlin.toListNode(this.toIntArray());
 }
