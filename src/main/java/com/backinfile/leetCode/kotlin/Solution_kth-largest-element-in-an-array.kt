@@ -11,11 +11,14 @@ class `Solution_kth-largest-element-in-an-array` {
     }
 
 
-    // 最小堆
+    // 最小堆 仅保证capacity以内的元素是正确的
     class Heap(private val capacity: Int) {
         val array = IntArray(capacity + 1)
-        var size = 0
-            private set
+        private var size = 0
+
+        fun getSize(): Int {
+            return size.coerceAtMost(capacity)
+        }
 
         fun add(num: Int) {
             // 超出数目上限时，弹出最小的，然后加入最新的
