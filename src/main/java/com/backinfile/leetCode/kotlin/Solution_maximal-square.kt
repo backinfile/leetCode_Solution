@@ -20,7 +20,8 @@ class `Solution_maximal-square` {
             while (stack.isNotEmpty() && stack.peek().height() > curHeight) {
                 val maxHeightIndex = stack.pop()
                 val lastIndex = if (stack.isEmpty()) -1 else stack.peek()
-                val maxHeight = maxHeightIndex.height().coerceAtMost(index - lastIndex - 1)
+                // 当前位置的上一个位置  与 上一个stack中的index  的距离 -1
+                val maxHeight = maxHeightIndex.height().coerceAtMost(index - 1 - lastIndex + 1 - 1)
                 result = result.coerceAtLeast(maxHeight * maxHeight)
             }
             stack.add(index)
