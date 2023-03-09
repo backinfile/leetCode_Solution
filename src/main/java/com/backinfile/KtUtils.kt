@@ -77,7 +77,16 @@ fun Array<IntArray>.toIntListList(): MutableList<MutableList<Int>> {
     return this.map { it.toMutableList() }.toMutableList()
 }
 
-infix fun Any?.assertEqualTo(other: Any?) {
+infix fun <T : Iterable<*>> T.assertEqualTo(other: T) {
+    if (this == other) {
+        assert(true)
+    } else {
+        println("first=$this\nsecond=$other")
+        assert(false)
+    }
+}
+
+infix fun Int.assertEqualTo(other: Int) {
     if (this == other) {
         assert(true)
     } else {
