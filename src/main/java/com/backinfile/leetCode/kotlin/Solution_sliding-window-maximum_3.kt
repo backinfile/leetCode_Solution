@@ -7,7 +7,7 @@ import org.junit.Test
 
 class `Solution_sliding-window-maximum_3` {
     fun maxSlidingWindow(nums: IntArray, k: Int): IntArray {
-        val heap = Heap(nums.size) { a, b -> nums[a] - nums[b] } // 改为记录数组index
+        val heap = Heap(nums.size) { nums[it] } // 改为记录数组index
         for (i in 0 until k - 1) {
             heap.add(i)
         }
@@ -25,7 +25,7 @@ class `Solution_sliding-window-maximum_3` {
     }
 
     // 最大堆
-    private class Heap(capacity: Int, val cmp: (Int, Int) -> Int) {
+    private class Heap(capacity: Int, val key: (Int) -> Int) {
         private val array = IntArray(capacity)
         private var size = 0
 
@@ -58,8 +58,8 @@ class `Solution_sliding-window-maximum_3` {
                     break
                 }
                 // 最大堆，取更大的值向上移动
-                val childIndex = if (right < size && array[right] largeThen array[left]) right else left
-                if (array[cur] largeEqualThen array[childIndex]) {
+                val childIndex = if (right < size && key(array[right]) > key(array[left])) right else left
+                if (key(array[cur]) >= key(array[childIndex])) {
                     break
                 }
                 swap(cur, childIndex)
@@ -71,7 +71,7 @@ class `Solution_sliding-window-maximum_3` {
             var cur = index
             while (cur > 0) {
                 val parent = (cur - 1) / 2
-                if (array[cur] lessEqualThen array[parent]) {
+                if (key(array[cur]) <= key(array[parent])) {
                     break
                 }
                 swap(cur, parent)
@@ -84,19 +84,6 @@ class `Solution_sliding-window-maximum_3` {
                 array[a] = array[b].also { array[b] = array[a] }
             }
         }
-
-        private infix fun Int.largeThen(b: Int): Boolean {
-            return cmp(this, b) > 0
-        }
-
-        private infix fun Int.largeEqualThen(b: Int): Boolean {
-            return cmp(this, b) >= 0
-        }
-
-        private infix fun Int.lessEqualThen(b: Int): Boolean {
-            return cmp(this, b) <= 0
-        }
-
     }
 
     @Test
