@@ -1,6 +1,5 @@
 package com.backinfile
 
-import com.alibaba.fastjson.JSON
 import com.backinfile.leetCode.kotlin.ListNode
 import com.backinfile.lintCode.TreeNode
 
@@ -76,4 +75,13 @@ fun ListNode?.get(index: Int): ListNode? {
 
 fun Array<IntArray>.toIntListList(): MutableList<MutableList<Int>> {
     return this.map { it.toMutableList() }.toMutableList()
+}
+
+infix fun Any?.assertEqualTo(other: Any?) {
+    if (this == other) {
+        assert(true)
+    } else {
+        println("first=$this\nsecond=$other")
+        assert(false)
+    }
 }
