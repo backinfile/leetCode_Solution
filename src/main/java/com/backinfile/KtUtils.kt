@@ -94,3 +94,11 @@ infix fun Int.assertEqualTo(other: Int) {
         assert(false)
     }
 }
+infix fun TreeNode?.assertEqualTo(other: TreeNode?) {
+    if (this == other) {
+        assert(true)
+    } else {
+        println("answer=$this\noutput=$other")
+        assert(false)
+    }
+}
