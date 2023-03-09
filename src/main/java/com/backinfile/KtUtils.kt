@@ -81,7 +81,7 @@ infix fun <T : Iterable<*>> T.assertEqualTo(other: T) {
     if (this == other) {
         assert(true)
     } else {
-        println("first=$this\nsecond=$other")
+        println("answer=$this\noutput=$other")
         assert(false)
     }
 }
@@ -90,7 +90,7 @@ infix fun Int.assertEqualTo(other: Int) {
     if (this == other) {
         assert(true)
     } else {
-        println("first=$this\nsecond=$other")
+        println("answer=$this\noutput=$other")
         assert(false)
     }
 }
