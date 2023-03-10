@@ -7,7 +7,7 @@ import org.junit.Test
 class `Solution_longest-increasing-subsequence` {
 
     fun lengthOfLIS(nums: IntArray): Int {
-        val dp = IntArray(nums.size)
+        val dp = IntArray(nums.size) // dp[i] 选择i时的最长长度
         var result = 0
         for (i in nums.indices) {
             val cur = nums[i]
