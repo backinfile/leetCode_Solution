@@ -6,36 +6,27 @@ import org.junit.Test
 
 class `Solution_burst-balloons` {
 
-    fun maxCoins(nums: IntArray): Int {
-        val visited = BooleanArray(nums.size) { false }
 
-        fun getScore(index: Int): Int {
-            val mid = nums[index]
-            var leftIndex = index - 1
-            while (leftIndex >= 0 && !visited[leftIndex]) leftIndex--
-            var rightIndex = index + 1
-            while (rightIndex < nums.size && !visited[rightIndex]) rightIndex++
+    // 反向考虑，dp+记忆化搜索
+    fun maxCoins(_nums: IntArray): Int {
+        val nums = intArrayOf(1) + _nums + intArrayOf(1)
+        val dp = Array(nums.size) { IntArray(nums.size) }
 
-            val left = if (leftIndex < 0) 1 else nums[leftIndex]
-            val right = if (rightIndex >= nums.size) 1 else nums[rightIndex]
-            return left * mid * right
+        fun dfs(left: Int, right: Int): Int {
+            if (dp[left][right] > 0) {
+                return dp[left][right]
+            }
+
+            var score = 0
+            for (i in left + 1 until right) {
+                val cur = nums[left] * nums[i] * nums[right]
+                score = maxOf(score, dfs(left, i) + cur + dfs(i, right))
+            }
+            dp[left][right] = score
+            return score
         }
 
-        var result = 0
-        fun dfs(cnt: Int, score: Int) {
-            if (cnt == nums.size) {
-                result = maxOf(result, score)
-                return
-            }
-            for (i in nums.indices) {
-                if (visited[i]) continue
-                visited[i] = true
-                dfs(cnt + 1, score + getScore(i))
-                visited[i] = false
-            }
-        }
-        dfs(0, 0)
-        return result
+        return dfs(0, nums.lastIndex)
     }
 
     @Test
