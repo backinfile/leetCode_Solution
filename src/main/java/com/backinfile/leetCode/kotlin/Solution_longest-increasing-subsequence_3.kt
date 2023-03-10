@@ -44,9 +44,14 @@ class `Solution_longest-increasing-subsequence_3` {
         val solution = `Solution_longest-increasing-subsequence_2`()
 
         for (i in 0..1000) {
+            // 生成数组
             val intArray = (-1..Random.nextInt(100)).map { Random.nextInt(10000) }.toIntArray()
+
+            // 验证结果长度
             val lis = lengthOfLIS(intArray)
             solution.lengthOfLIS(intArray) assertEqualTo lis.size
+
+            // 验证结果顺序
             var index = -1
             for (n in lis) {
                 val nextIndex = indexOf(intArray, index, n)
