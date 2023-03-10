@@ -10,7 +10,6 @@ class `Solution_coin-change` {
             return 0
         }
 
-        coins.sortDescending()
         val dp = IntArray(amount + 1) { -1 }
         dp[0] = 0
 
