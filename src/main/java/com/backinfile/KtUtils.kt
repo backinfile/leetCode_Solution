@@ -114,3 +114,14 @@ infix fun TreeNode?.assertEqualTo(other: TreeNode?) {
         assert(false)
     }
 }
+
+infix fun IntArray.assertEqualTo(other: IntArray) {
+    val a = this.toList()
+    val b = other.toList()
+    if (a == b) {
+        assert(true)
+    } else {
+        println("answer=$a\noutput=$b")
+        assert(false)
+    }
+}
