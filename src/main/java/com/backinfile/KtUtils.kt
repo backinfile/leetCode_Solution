@@ -125,3 +125,14 @@ infix fun IntArray.assertEqualTo(other: IntArray) {
         assert(false)
     }
 }
+
+infix fun IntArray.assertSortedEqualTo(other: IntArray) {
+    val a = this.sorted()
+    val b = other.sorted()
+    if (a == b) {
+        assert(true)
+    } else {
+        println("answer=$a\noutput=$b")
+        assert(false)
+    }
+}
