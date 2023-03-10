@@ -86,6 +86,17 @@ infix fun <T : Iterable<*>> T.assertEqualTo(other: T) {
     }
 }
 
+infix fun <T : Iterable<V>, V : Comparable<V>> T.assertSortedEqualTo(other: T) {
+    val a = this.sorted()
+    val b = other.sorted()
+    if (a == b) {
+        assert(true)
+    } else {
+        println("answer=$a\noutput=$b")
+        assert(false)
+    }
+}
+
 infix fun Int.assertEqualTo(other: Int) {
     if (this == other) {
         assert(true)
@@ -94,6 +105,7 @@ infix fun Int.assertEqualTo(other: Int) {
         assert(false)
     }
 }
+
 infix fun TreeNode?.assertEqualTo(other: TreeNode?) {
     if (this == other) {
         assert(true)
