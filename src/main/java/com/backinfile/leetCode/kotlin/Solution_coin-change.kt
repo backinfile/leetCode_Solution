@@ -17,11 +17,9 @@ class `Solution_coin-change` {
         for (value in 1..amount) {
             var minCnt = Int.MAX_VALUE
             for (c in coins) {
-                for (cnt in minOf(minCnt, value / c) downTo 1) {
-                    val beforeValue = value - c * cnt
-                    if (beforeValue >= 0 && dp[beforeValue] >= 0) {
-                        minCnt = minOf(minCnt, dp[beforeValue] + cnt)
-                    }
+                val beforeValue = value - c * 1
+                if (beforeValue >= 0 && dp[beforeValue] >= 0) {
+                    minCnt = minOf(minCnt, dp[beforeValue] + 1)
                 }
             }
             dp[value] = if (minCnt == Int.MAX_VALUE) -1 else minCnt
