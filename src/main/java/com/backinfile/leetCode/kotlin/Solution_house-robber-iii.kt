@@ -7,22 +7,21 @@ import org.junit.Test
 
 class `Solution_house-robber-iii` {
 
-    private val dp = HashMap<TreeNode, Int>()
-    private val dpHead = HashMap<TreeNode, Int>()
-    fun rob(root: TreeNode?, head: Boolean = true): Int {
+    private val dp = arrayOf(HashMap<TreeNode, Int>(), HashMap())
+    fun rob(root: TreeNode?, head: Int = 1): Int {
         if (root == null) {
             return 0
         }
 
-        val history = (if (head) dpHead else dp)[root]
+        val history = dp[head][root]
         if (history != null) {
             return history
         }
 
         return maxOf(
             rob(root.left) + rob(root.right),
-            if (head) root.`val` + rob(root.left, false) + rob(root.right, false) else 0
-        ).also { (if (head) dpHead else dp)[root] = it }
+            if (head > 0) root.`val` + rob(root.left, 0) + rob(root.right, 0) else 0
+        ).also { dp[head][root] = it }
     }
 
     @Test
