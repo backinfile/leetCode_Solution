@@ -143,6 +143,18 @@ infix fun String.assertEqualTo(other: String) {
     }
 }
 
+
+infix fun Boolean.assertEqualTo(other: Boolean) {
+    val a = this
+    val b = other
+    if (a == b) {
+        assert(true)
+    } else {
+        println("answer=$a\noutput=$b")
+        assert(false)
+    }
+}
+
 infix fun IntArray.assertSortedEqualTo(other: IntArray) {
     val a = this.sorted()
     val b = other.sorted()
