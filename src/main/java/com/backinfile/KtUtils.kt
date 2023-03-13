@@ -18,6 +18,12 @@ fun String.toIntArray(): IntArray {
 fun String.toStrList(): MutableList<String> {
     return Utils.toStrArray(this).toMutableList()
 }
+fun String.toDoubleArray(): DoubleArray {
+    return Utils.toDoubleArray(this)
+}
+fun String.toStrListList(): MutableList<MutableList<String>> {
+    return Utils.toStrArrayArray(this).map { it.toMutableList() }.toMutableList()
+}
 
 fun String.toIntList(): MutableList<Int> {
     return Utils.toIntArray(this).toMutableList()
