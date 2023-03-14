@@ -1,5 +1,6 @@
 package com.backinfile
 
+import com.alibaba.fastjson.JSON
 import com.backinfile.leetCode.kotlin.ListNode
 import com.backinfile.lintCode.TreeNode
 
@@ -35,6 +36,9 @@ fun String.toIntArrayArray(): Array<IntArray> {
 
 fun String.toCharArrayArray(): Array<CharArray> {
     return Utils.toCharArrayArray(this)
+}
+fun String.toCharArray(): CharArray {
+    return JSON.parseObject(this, CharArray::class.java)
 }
 
 fun String.toIntListList(): MutableList<MutableList<Int>> {
