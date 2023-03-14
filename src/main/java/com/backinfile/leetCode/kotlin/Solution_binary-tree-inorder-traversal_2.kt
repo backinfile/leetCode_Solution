@@ -61,7 +61,7 @@ class `Solution_binary-tree-inorder-traversal_2` {
 
     @Test
     fun test() {
-        assert(testFunc("[1,null,2, null,null,3]", "[1,3,2]"))
+        assert(testFunc("[1,null,2,3]", "[1,3,2]"))
         assert(testFunc("[]", "[]"))
         assert(testFunc("[1]", "[1]"))
     }

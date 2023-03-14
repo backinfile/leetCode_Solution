@@ -1,5 +1,6 @@
 package com.backinfile.lintCode;
 
+import com.backinfile.KtUtilsKt;
 import org.junit.Test;
 
 public class Solution_1704 {
@@ -25,7 +26,7 @@ public class Solution_1704 {
 
     @Test
     public void test() {
-        assert rangeSumBST(TreeNode.parse("[10,5,15,3,7,null,18]"), 7, 15) == 32;
-        assert rangeSumBST(TreeNode.parse("[10,5,15,3,7,13,18,1,null,6]"), 6, 10) == 23;
+        assert rangeSumBST(KtUtilsKt.toTree("[10,5,15,3,7,null,18]"), 7, 15) == 32;
+        assert rangeSumBST(KtUtilsKt.toTree("[10,5,15,3,7,13,18,1,null,6]"), 6, 10) == 23;
     }
 }

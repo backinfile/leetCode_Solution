@@ -42,7 +42,29 @@ fun String.toIntListList(): MutableList<MutableList<Int>> {
 }
 
 fun String.toTree(): TreeNode? {
-    return TreeNode.parse(this)
+    val data = this.replace(" ", "").trim('[', ']')
+    if (data == "") {
+        return null
+    }
+    val nodesValues = data.split(',')
+    val head = TreeNode(nodesValues[0].toInt())
+    val queue = java.util.ArrayDeque<TreeNode>()
+    queue.add(head)
+    var index = 1
+    while (queue.isNotEmpty()) {
+        val node = queue.pop()
+        if (index < nodesValues.size && nodesValues[index] != "null") {
+            node.left = TreeNode(nodesValues[index].toInt())
+            queue.add(node.left)
+        }
+        index++
+        if (index < nodesValues.size && nodesValues[index] != "null") {
+            node.right = TreeNode(nodesValues[index].toInt())
+            queue.add(node.right)
+        }
+        index++
+    }
+    return head
 }
 
 fun TreeNode?.findNode(value: Int): TreeNode? {

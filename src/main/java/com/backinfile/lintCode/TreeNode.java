@@ -24,30 +24,6 @@ public class TreeNode {
                 '}';
     }
 
-    public static TreeNode parse(String str) {
-        Integer[] array = JSON.parseObject(str, Integer[].class);
-        if (array.length == 0) {
-            return null;
-        }
-        TreeNode[] treeNodes = new TreeNode[array.length];
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == null) {
-                continue;
-            }
-            treeNodes[i] = new TreeNode(array[i]);
-
-            int parent = (i - 1) / 2;
-            if (parent != i) {
-                if (i % 2 == 1) {
-                    treeNodes[parent].left = treeNodes[i];
-                } else {
-                    treeNodes[parent].right = treeNodes[i];
-                }
-            }
-        }
-        return treeNodes[0];
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
