@@ -1,6 +1,7 @@
 package com.backinfile.leetCode.kotlin
 
 import com.backinfile.lintCode.TreeNode
+import com.backinfile.toList
 import com.backinfile.toTree
 import org.junit.Test
 import java.util.*
