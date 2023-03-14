@@ -6,7 +6,7 @@ import com.backinfile.toTree
 import org.junit.Test
 
 class `Solution_diameter-of-binary-tree` {
-    fun diameterOfBinaryTree(root: TreeNode?, containsHead: Boolean = true): Int {
+    fun diameterOfBinaryTree(root: TreeNode?): Int {
         if (root == null) {
             return 0
         }
