@@ -138,7 +138,7 @@ infix fun TreeNode?.assertEqualTo(other: TreeNode?) {
     if (this == other) {
         assert(true)
     } else {
-        println("answer=$this\noutput=$other")
+        println("answer=${this?.toList()}\noutput=${other?.toList()}")
         assert(false)
     }
 }

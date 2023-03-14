@@ -67,6 +67,7 @@ public class TreeNode {
                 break;
             }
         }
+        while (!result.isEmpty() && result.get(result.size() - 1) == null) result.remove(result.size() - 1);
         return result;
     }
 }
