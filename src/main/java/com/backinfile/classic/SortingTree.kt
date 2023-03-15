@@ -5,31 +5,37 @@ import com.backinfile.toIntList
 import org.junit.Test
 import kotlin.random.Random
 
-class SortingTree {
+open class SortingTree {
 
     private var head: TreeNode? = null
 
     fun add(v: Int) {
+        val node = TreeNode(v)
         if (head == null) {
-            head = TreeNode(v)
-            return
-        }
-        var cur = head
-        while (cur != null) {
-            if (cur.`val` > v) {
-                if (cur.left == null) {
-                    cur.left = TreeNode(v)
-                    return
+            head = node
+        } else {
+            var cur = head
+            while (cur != null) {
+                if (cur.`val` > v) { // 相等的值放在right
+                    if (cur.left == null) {
+                        cur.left = node
+                        break
+                    }
+                    cur = cur.left
+                } else {
+                    if (cur.right == null) {
+                        cur.right = node
+                        break
+                    }
+                    cur = cur.right
                 }
-                cur = cur.left
-            } else {
-                if (cur.right == null) {
-                    cur.right = TreeNode(v)
-                    return
-                }
-                cur = cur.right
             }
         }
+        afterAdd(node)
+    }
+
+    protected open fun afterAdd(node: TreeNode) {
+
     }
 
     fun find(v: Int): Boolean {

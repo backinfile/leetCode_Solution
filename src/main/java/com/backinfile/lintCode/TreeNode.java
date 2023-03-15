@@ -11,6 +11,7 @@ import java.util.Objects;
 public class TreeNode {
     public int val;
     public TreeNode left, right;
+    public int balance;
 
     public TreeNode(int val) {
         this.val = val;
