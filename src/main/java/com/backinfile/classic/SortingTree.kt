@@ -1,7 +1,5 @@
 package com.backinfile.classic
 
-import com.backinfile.assertEqualTo
-import com.backinfile.assertSortedEqualTo
 import com.backinfile.lintCode.TreeNode
 import com.backinfile.toIntList
 import org.junit.Test
@@ -49,15 +47,16 @@ class SortingTree {
         if (head == null) {
             return false
         }
-        val parent: TreeNode =
-            if (head!!.`val` == v) TreeNode(-1).also { it.left = head }
-            else findParent(v) ?: return false
+        // 设置一个父节点，以防删除head时没有父节点
+        val dummyHead = TreeNode(-1).apply { left = head }
 
-        var cur = if (parent.left?.`val` == v) parent.left else parent.right
+        val parent = findParent(dummyHead, v) ?: return false // 当前需要删除的节点的父节点
+        var cur = if (parent.left?.`val` == v) parent.left else parent.right // 当前需要删除的节点
 
         if (cur.left == null || cur.right == null) {
             cur = cur.left ?: cur.right
-        } else {
+
+        } else { // 左子树的最大节点替换删除的节点
             if (cur.left.right != null) {
                 val maxNode = removeMaxNode(cur.left)
                 maxNode.left = cur.left
@@ -68,20 +67,20 @@ class SortingTree {
                 cur = cur.left
             }
         }
-        if (parent.left?.`val` == v) {
-            parent.left = cur
-        } else {
-            parent.right = cur
-        }
 
-        if (head!!.`val` == v) {
-            head = parent.left
-        }
+        // 设置父节点的next
+        if (parent.left?.`val` == v) parent.left = cur else parent.right = cur
+
+        // 还原head
+        head = dummyHead.left
         return true
     }
 
-    private fun findParent(v: Int): TreeNode? {
-        var cur = head
+    private fun findParent(dummyHead: TreeNode, v: Int): TreeNode? {
+        if (dummyHead.left.`val` == v) {
+            return dummyHead
+        }
+        var cur = dummyHead.left
         while (cur != null) {
             val next = if (v > cur.`val`) cur.right else cur.left
             if (next?.`val` == v) {
@@ -158,7 +157,7 @@ class SortingTree {
 
     @Test
     fun testRemove2() {
-        repeat(10) {
+        repeat(100) {
             val input = (1..100).map { Random.nextInt(1000) }.toMutableList()
             val tree = SortingTree()
             input.forEach { tree.add(it) }
