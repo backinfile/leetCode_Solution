@@ -2,6 +2,9 @@ package com.backinfile
 
 import com.alibaba.fastjson.JSON
 import com.backinfile.leetCode.kotlin.ListNode
+import com.backinfile.leetCode.kotlin.equalTo
+import com.backinfile.leetCode.kotlin.listNodeEquals
+import com.backinfile.leetCode.kotlin.toList
 import com.backinfile.lintCode.TreeNode
 
 class KtUtils {
@@ -167,6 +170,15 @@ infix fun TreeNode?.assertEqualTo(other: TreeNode?) {
         assert(true)
     } else {
         println("answer=${this?.toList()}\noutput=${other?.toList()}")
+        assert(false)
+    }
+}
+
+infix fun ListNode?.assertEqualTo(other: ListNode?) {
+    if (this equalTo other) {
+        assert(true)
+    } else {
+        println("answer=${this.toList()}\noutput=${other.toList()}")
         assert(false)
     }
 }

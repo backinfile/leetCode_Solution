@@ -20,6 +20,16 @@ infix fun ListNode?.equalTo(other: ListNode?): Boolean {
     }
 }
 
+fun ListNode?.toList(): List<Int> {
+    val result = ArrayList<Int>()
+    var cur = this
+    while (cur != null) {
+        result.add(cur.`val`)
+        cur = cur.next
+    }
+    return result
+}
+
 fun toListNode(str: String): ListNode? {
     val array = Utils.toIntArray(str)
     if (array.isEmpty()) {
