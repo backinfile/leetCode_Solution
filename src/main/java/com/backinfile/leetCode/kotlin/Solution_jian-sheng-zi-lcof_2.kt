@@ -4,19 +4,21 @@ import com.backinfile.assertEqualTo
 import org.junit.Test
 import kotlin.math.max
 
-class `Solution_jian-sheng-zi-lcof` {
+class `Solution_jian-sheng-zi-lcof_2` {
     fun cuttingRope(n: Int): Int {
-        val dp = IntArray(n + 1)
-        dp[1] = 1
-        dp[2] = 1
-        for (i in 3..n) {
-            var cur = 0
-            for (k in 1 until i) {
-                cur = maxOf(cur, k * dp[i - k], k * (i - k))
-            }
-            dp[i] = cur
-        }
-        return dp[n]
+        if (n == 2) return 1
+        if (n == 3) return 2
+        val v = n / 3
+        val left = n - v * 3
+        return maxOf(
+            Math.pow(3.0, v.toDouble()).toInt() * maxOf(left, cuttingWith2(left)),
+            Math.pow(3.0, v.toDouble() - 1).toInt() * maxOf(left + 3, cuttingWith2(left + 3))
+        )
+    }
+
+    private fun cuttingWith2(n: Int): Int {
+        val cnt = n / 2
+        return maxOf(Math.pow(2.0, cnt.toDouble()).toInt(), n)
     }
 
     @Test
