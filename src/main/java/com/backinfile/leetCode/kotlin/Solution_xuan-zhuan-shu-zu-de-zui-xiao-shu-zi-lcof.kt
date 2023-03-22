@@ -23,6 +23,8 @@ class `Solution_xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof` {
         return numbers[left]
     }
 
+    companion object
+
     @Test
     fun test() {
         1 assertEqualTo minArray("[3,3,3,3,3,3,3,3,1,3]".toIntArray())
