@@ -6,8 +6,6 @@ import org.junit.Test
 
 class `Solution_xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof` {
     fun minArray(numbers: IntArray): Int {
-        if (numbers.isEmpty()) return -1
-
         var left = 0
         var right = numbers.lastIndex
         while (left < right) {
@@ -15,7 +13,7 @@ class `Solution_xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof` {
             val midValue = numbers[mid]
             val rightValue = numbers[right]
             if (midValue < rightValue) {
-                right = mid
+                right = mid // 当前mid有可能是最终结果，所以不可以用mid-1，由此循环条件不可以是left<=right
             } else if (midValue > rightValue) {
                 left = mid + 1
             } else {
