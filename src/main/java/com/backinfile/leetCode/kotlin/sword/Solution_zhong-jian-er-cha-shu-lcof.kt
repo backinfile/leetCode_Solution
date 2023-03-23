@@ -1,4 +1,4 @@
-package com.backinfile.leetCode.kotlin
+package com.backinfile.leetCode.kotlin.sword
 
 import com.backinfile.assertEqualTo
 import com.backinfile.lintCode.TreeNode

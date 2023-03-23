@@ -1,15 +1,15 @@
-package com.backinfile.leetCode.kotlin
+package com.backinfile.leetCode.kotlin.sword
 
 import com.backinfile.assertEqualTo
 import org.junit.Test
 
-class `Solution_yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof` {
+class `Solution_yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof_2` {
     fun lastRemaining(n: Int, m: Int): Int {
-        if (n == 1) {
-            return 0
+        var result = 0
+        for (i in 2..n) {
+            result = (result + m) % i
         }
-        val last = lastRemaining(n - 1, m)
-        return (last + m) % n
+        return result
     }
 
     @Test
