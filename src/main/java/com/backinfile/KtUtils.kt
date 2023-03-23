@@ -156,7 +156,7 @@ infix fun <T : Iterable<V>, V : Comparable<V>> T.assertSortedEqualTo(other: T) {
     }
 }
 
-infix fun Int.assertEqualTo(other: Int) {
+infix fun Number.assertEqualTo(other: Number) {
     if (this == other) {
         assert(true)
     } else {
